@@ -4,8 +4,8 @@ import NavBar from './NavBar';
 
 // informacioncd
 import contactsData from '../utils/contactsData'
-import BtnAdd from './BtnAdd';
-import BtnDelete from './BtnDelete'
+import Btn from './Btn';
+
 
 class Directory extends Component {
     constructor(props) {
@@ -42,8 +42,6 @@ class Directory extends Component {
         <ContactCard info={contact}  key={idx}/> );
 
         let viewCard ;
-        console.log(this.state.contacts)
-        console.log(this.state.deleteContact)
 
         if (this.state.contacts.length > 0) {
             viewCard = <div>{card}</div>
@@ -65,8 +63,8 @@ class Directory extends Component {
                         {viewCard}
                     </div>
                     <div className="col s3">
-                        <BtnAdd clickHandler={this.addContact}/>
-                        <BtnDelete clickHandler={this.deleteContact}/>
+                        <Btn clickHandler={this.addContact} type="Agregar" icon="add"/>
+                        <Btn clickHandler={this.deleteContact} type="Borrar" icon="delete"/>
                     </div>
                 </div>
             </div>
