@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 
 // informacioncd
 import contactsData from '../utils/contactsData'
+import BtnAdd from './BtnAdd';
 
 class Directory extends Component {
     constructor(props) {
@@ -12,12 +13,14 @@ class Directory extends Component {
             contacts: contactsData,
             isToggleOn: false,
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.outputEvent = this.outputEvent.bind(this);
     }
-    handleClick(){
-        this.setState(state => ({
-            isToggleOn: !state.isToggleOn
-          }));
+    outputEvent(){
+        this.setState(
+            (state) => (
+                {isToggleOn: !state.isToggleOn}
+            )
+        );       
     }
 
     render() {
@@ -28,9 +31,11 @@ class Directory extends Component {
         console.log(this.state.isToggleOn)
         if (this.state.isToggleOn === true){
             console.log("Este boton agregara un contacto al directorio")
-            this.state.isToggleOn = false
+            setTimeout(() => {
+                this.state.isToggleOn = !this.state.isToggleOn    
+            }, 1000 );
         }else{
-            console.log("No hay nada")
+            console.log("Aun no presionas el boton")
         }
 
 
@@ -44,13 +49,7 @@ class Directory extends Component {
                         {card}
                     </div>
                     <div className="col s3">
-                        <a 
-                        className="waves-effect waves-light btn-large"
-                        onClick={this.handleClick}
-                        >
-                            <i className="material-icons right">add</i>
-                            agregar
-                        </a>
+                        <BtnAdd clickHandler={this.outputEvent}/>
                     </div>
                 </div>
             </div>
