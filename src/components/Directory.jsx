@@ -5,38 +5,54 @@ import NavBar from './NavBar';
 // informacioncd
 import contactsData from '../utils/contactsData'
 import BtnAdd from './BtnAdd';
+import BtnDelete from './BtnDelete'
 
 class Directory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            contacts: contactsData,
-            isToggleOn: false,
+            contacts: [],
+            deleteContact: false,
         }
-        this.outputEvent = this.outputEvent.bind(this);
+        this.addContact = this.addContact.bind(this);
+        this.deleteContact = this.deleteContact.bind(this);
     }
-    outputEvent(){
+    addContact(){
         this.setState(
-            (state) => (
-                {isToggleOn: !state.isToggleOn}
+            () => (
+                {contacts: contactsData}
             )
         );       
+    }
+    deleteContact(){
+        this.setState(
+            () => {
+                return ({ contacts: [] });
+            }
+        );
+        this.setState(
+            () => (
+                {deleteContact: true}
+            )
+        );   
     }
 
     render() {
         const card = this.state.contacts.map((contact, idx) => 
         <ContactCard info={contact}  key={idx}/> );
 
+        let viewCard ;
+        console.log(this.state.contacts)
+        console.log(this.state.deleteContact)
 
-        console.log(this.state.isToggleOn)
-        if (this.state.isToggleOn === true){
-            console.log("Este boton agregara un contacto al directorio")
-            setTimeout(() => {
-                this.state.isToggleOn = !this.state.isToggleOn    
-            }, 1000 );
+        if (this.state.contacts.length > 0) {
+            viewCard = <div>{card}</div>
+        }else if(this.state.deleteContact === true){
+            viewCard = <h1>Borraste los contactos</h1>
         }else{
-            console.log("Aun no presionas el boton")
+            viewCard = <h1>No hay contactos</h1>     
         }
+
 
 
         return (
@@ -46,10 +62,11 @@ class Directory extends Component {
                         <NavBar/>
                     </div>
                     <div className="col s9">
-                        {card}
+                        {viewCard}
                     </div>
                     <div className="col s3">
-                        <BtnAdd clickHandler={this.outputEvent}/>
+                        <BtnAdd clickHandler={this.addContact}/>
+                        <BtnDelete clickHandler={this.deleteContact}/>
                     </div>
                 </div>
             </div>
