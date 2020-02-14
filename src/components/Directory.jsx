@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 
 // informacioncd
 import contactsData from '../utils/contactsData'
-import Btn from './Btn';
+import Btn from '../action/Btn';
 
 
 class Directory extends Component {

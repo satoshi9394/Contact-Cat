@@ -1,5 +1,5 @@
 import React from 'react'
-import BtnAdd from './Btn'
+import BtnAdd from '../action/Btn'
 
 
 
