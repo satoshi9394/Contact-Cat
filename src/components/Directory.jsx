@@ -19,22 +19,20 @@ class Directory extends Component {
     }
     addContact(){
         this.setState(
-            () => (
-                {contacts: contactsData}
+            () => ({
+                contacts: contactsData,
+                deleteContact: false
+                }
             )
         );       
     }
     deleteContact(){
         this.setState(
-            () => {
-                return ({ contacts: [] });
-            }
+            () => ({ 
+                    contacts: [] ,
+                    deleteContact: true
+                }) 
         );
-        this.setState(
-            () => (
-                {deleteContact: true}
-            )
-        );   
     }
 
     render() {
@@ -63,8 +61,14 @@ class Directory extends Component {
                         {viewCard}
                     </div>
                     <div className="col s3">
-                        <Btn clickHandler={this.addContact} type="Agregar" icon="add"/>
-                        <Btn clickHandler={this.deleteContact} type="Borrar" icon="delete"/>
+                        <div className="row">
+                            <div className="col s6">
+                                <Btn clickHandler={this.addContact} type="Agregar" icon="add"/>
+                            </div>
+                            <div className="col s6">
+                                <Btn clickHandler={this.deleteContact} type="Borrar" icon="delete"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
