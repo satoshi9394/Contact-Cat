@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import ContactCard from './ContactCard';
+import NavBar from './NavBar';
 
 // informacioncd
 import contactsData from '../utils/contactsData'
@@ -36,6 +37,9 @@ class Directory extends Component {
         return (
             <div className='container'>
                 <div className="row">
+                    <div className="col s12">
+                        <NavBar/>
+                    </div>
                     <div className="col s9">
                         {card}
                     </div>
