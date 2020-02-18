@@ -90,6 +90,10 @@ class Directory extends Component {
                     contacts: [
                       ...prevState.contacts,
                       userData],
+/*                     contactsData: [
+                        ...prevState.contactsData,
+                        userData
+                    ] ,  */
                     newContacts: {
                         name:'',
                         phone:'',
