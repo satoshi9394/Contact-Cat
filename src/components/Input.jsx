@@ -11,7 +11,7 @@ const Input = props => {
                 className='validate'
                 id={props.name}
                 name={props.name}
-                type={props.inputType}
+                type={props.type}
                 value={props.value}
                 placeholder={props.placeholder}
                 onChange={props.handleChange}

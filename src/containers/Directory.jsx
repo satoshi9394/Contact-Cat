@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 import Input from '../components/Input';
 
 // informacioncd
-import contactsData from '../utils/contactsData'
+
 import Btn from '../action/Btn';
 
 
@@ -15,20 +15,32 @@ class Directory extends Component {
     state = {
             contacts: [],
             deleteContact: false,
-            newContacts: []
-/*             newContacts:{
-                name:'',
-                phone:'',
-                email:'',
-                imgUrl:"#"
-            }, */
+            newContacts: {
+                name: '',
+                phone: '',
+                email: '',
+                website: '',
+            },
+            usersSaved: []
+    }
+
+
+    componentDidMount() {
+        const url = 'https://jsonplaceholder.typicode.com/users'
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    usersSaved: data
+                });
+            });
     }
 
     addContact= () => {
-        let prewData=this.state.newContacts
         this.setState(
             () => ({
-                contacts: contactsData,
+                contacts: this.state.usersSaved,
                 deleteContact: false
                 }
             )
@@ -43,39 +55,20 @@ class Directory extends Component {
         );
     }
 
-    handleName = (e) => {
-        let value = e.target.value
+    handleInput = (e) => {
+        let value = e.target.value;
+        let name = e.target.name;
         this.setState(
-          prevState => ({
-            newContacts: {
-                ...prevState.newContacts,
-                name: value,
-            }
-          })          
-        );
+            prevState => ({
+                newContacts:{
+                    ...prevState.newContacts,
+                [name]: value,}
+            })
+        )
     }
-    handleNumber = (e) =>{
-        let value = e.target.value
-        this.setState(
-          prevState => ({
-            newContacts: {
-                ...prevState.newContacts,
-                phone: value,
-            }
-          })          
-        );
-    }
-    handleEmail = (e) =>{
-        let value = e.target.value
-        this.setState(
-          prevState => ({
-            newContacts: {
-                ...prevState.newContacts,
-                email: value,
-            }
-          })          
-        );
-    }
+
+
+
     handleFormSubmmit = (e) =>{
         e.preventDefault();
         let userData = this.state.newContacts;
@@ -117,7 +110,7 @@ class Directory extends Component {
                     <div className="col s3">
                         <div className="row">
                             <div className="col s6">
-                                <Btn clickHandler={this.addContact} type="Agregar" icon="add"/>
+                                <Btn clickHandler={this.addContact} type="Mostrar" icon="add"/>
                             </div>
                             <div className="col s6">
                                 <Btn clickHandler={this.deleteContact} type="Borrar" icon="delete"/>
@@ -127,32 +120,41 @@ class Directory extends Component {
                     <div className="col s12">
                         <form>
                             <h5>Agrega contactos nuevos</h5>
-                        <div className="col s4">
+                        <div className="col s3">
                             <Input
                             name='name'
                             type='text'
                             value={this.state.newContacts.name}
                             placeholder='ingresa tu nombre'
-                            handleChange={this.handleName}
+                            handleChange={this.handleInput}
                             />
                         </div>
-                        <div className="col s4">
+                        <div className="col s3">
                         <Input
                             name='phone'
-                            type='phone'
+                            type='text'
                             value={this.state.newContacts.phone}
                             placeholder='ingresa tu telefono'
-                            handleChange={this.handleNumber}
+                            handleChange={this.handleInput}
                             />
                         </div>
-                        <div className="col s4">
+                        <div className="col s3">
                         <Input
                             name='email'
                             type='email'
                             value={this.state.newContacts.email}
                             placeholder='ingresa tu email'
-                            handleChange={this.handleEmail}
+                            handleChange={this.handleInput}
                             />   
+                        </div>
+                        <div className="col s3">
+                            <Input
+                            name='website'
+                            type='text'
+                            value={this.state.newContacts.website}
+                            placeholder='ingresa tu webSite'
+                            handleChange={this.handleInput}
+                            />
                         </div>
                         <Btn 
                         clickHandler={this.handleFormSubmmit}
