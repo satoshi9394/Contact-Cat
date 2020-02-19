@@ -11,27 +11,21 @@ import Btn from '../action/Btn';
 
 
 class Directory extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+
+    state = {
             contacts: [],
             deleteContact: false,
-            newContacts:{
+            newContacts: []
+/*             newContacts:{
                 name:'',
                 phone:'',
                 email:'',
                 imgUrl:"#"
-            },
-        }
-
-        this.addContact = this.addContact.bind(this);
-        this.deleteContact = this.deleteContact.bind(this);
-        this.handleName = this.handleName.bind(this);
-        this.handleNumber = this.handleNumber.bind(this);
-        this.handleEmail = this.handleEmail.bind(this);
-        this.handleFormSubmmit = this.handleFormSubmmit.bind(this);
+            }, */
     }
-    addContact(){
+
+    addContact= () => {
+        let prewData=this.state.newContacts
         this.setState(
             () => ({
                 contacts: contactsData,
@@ -40,7 +34,7 @@ class Directory extends Component {
             )
         );       
     }
-    deleteContact(){
+    deleteContact = () =>{
         this.setState(
             () => ({ 
                     contacts: [] ,
@@ -49,7 +43,7 @@ class Directory extends Component {
         );
     }
 
-    handleName(e){
+    handleName = (e) =>{
         let value = e.target.value
         this.setState(
           prevState => ({
@@ -60,7 +54,7 @@ class Directory extends Component {
           })          
         );
     }
-    handleNumber(e){
+    handleNumber = (e) =>{
         let value = e.target.value
         this.setState(
           prevState => ({
@@ -71,7 +65,7 @@ class Directory extends Component {
           })          
         );
     }
-    handleEmail(e){
+    handleEmail = (e) =>{
         let value = e.target.value
         this.setState(
           prevState => ({
@@ -82,7 +76,7 @@ class Directory extends Component {
           })          
         );
     }
-    handleFormSubmmit(e){
+    handleFormSubmmit = (e) =>{
         e.preventDefault();
         let userData = this.state.newContacts;
         this.setState(prevState=>(
@@ -90,16 +84,6 @@ class Directory extends Component {
                     contacts: [
                       ...prevState.contacts,
                       userData],
-/*                     contactsData: [
-                        ...prevState.contactsData,
-                        userData
-                    ] ,  */
-                    newContacts: {
-                        name:'',
-                        phone:'',
-                        email:'',
-                        imgUrl:"#"
-                        }
                 }
             )
         )
@@ -142,7 +126,7 @@ class Directory extends Component {
                     </div>
                     <div className="col s12">
                         <form>
-                            <h5>Agrega contactos</h5>
+                            <h5>Agrega contactos nuevos</h5>
                         <div className="col s4">
                             <Input
                             name='name'
@@ -172,7 +156,7 @@ class Directory extends Component {
                         </div>
                         <Btn 
                         clickHandler={this.handleFormSubmmit}
-                        type="Enviar contacto" icon="add"/>
+                        type="Agregar" icon="add"/>
                         </form> 
                     </div>
                 </div>
