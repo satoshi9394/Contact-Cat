@@ -43,7 +43,7 @@ class Directory extends Component {
         );
     }
 
-    handleName = (e) =>{
+    handleName = (e) => {
         let value = e.target.value
         this.setState(
           prevState => ({
