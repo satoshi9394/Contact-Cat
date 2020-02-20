@@ -30,7 +30,6 @@ class Directory extends Component {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 this.setState({
                     usersSaved: data
                 });
@@ -69,6 +68,8 @@ class Directory extends Component {
 
 
 
+
+
     handleFormSubmmit = (e) =>{
         e.preventDefault();
         let userData = this.state.newContacts;
@@ -77,6 +78,22 @@ class Directory extends Component {
                     contacts: [
                       ...prevState.contacts,
                       userData],
+                }
+            )
+        )
+    }
+
+    handleClear =(e) => {
+        e.preventDefault();
+        this.setState(()=>(
+                {
+                    newContacts: {
+                        name:'',
+                        phone: '',
+                        website:'',
+                        email: ''
+                        
+                    },
                 }
             )
         )
@@ -101,9 +118,6 @@ class Directory extends Component {
         return (
             <div className='container'>
                 <div className="row">
-                    <div className="col s12">
-                        <NavBar/>
-                    </div>
                     <div className="col s9">
                         {viewCard}
                     </div>
@@ -113,7 +127,7 @@ class Directory extends Component {
                                 <Btn clickHandler={this.addContact} type="Mostrar" icon="add"/>
                             </div>
                             <div className="col s6">
-                                <Btn clickHandler={this.deleteContact} type="Borrar" icon="delete"/>
+                                <Btn clickHandler={this.deleteContact} type="Eliminar" icon="delete"/>
                             </div>
                         </div>
                     </div>
@@ -159,6 +173,9 @@ class Directory extends Component {
                         <Btn 
                         clickHandler={this.handleFormSubmmit}
                         type="Agregar" icon="add"/>
+                        <Btn 
+                        clickHandler={this.handleClear}
+                        type="Borrar" icon="delete"/>
                         </form> 
                     </div>
                 </div>

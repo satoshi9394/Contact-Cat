@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom'
+
 
 
 function NavBar() {
@@ -11,9 +13,9 @@ function NavBar() {
                     Logo
                 </a>
                 <ul id="nav-mobile" className="left hide-on-med-and-down">
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Acerca de Nosotros</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><Link to="/">Login</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/directory">Directorio</Link></li>
                 </ul>
             </div>
         </nav>
