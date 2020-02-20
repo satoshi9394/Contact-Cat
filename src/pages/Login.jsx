@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Input from '../components/Input'
+import InLogin from '../components/InLogin'
 
 
 
@@ -14,19 +14,19 @@ const About = (props) => {
     return(
         <div className='row'>
             <div className="col s3">
-            <Input
+            <InLogin
             name='nickname'
             type='text'
-            value=''
+            value='password'
             placeholder='ingresa tu usuario'
             handleChange=''
             />
             </div>
             <div className="col s3">
-            <Input
+            <InLogin
             name='password'
             type='text'
-            value=''
+            value='password'
             placeholder='password'
             handleChange=''
             />
